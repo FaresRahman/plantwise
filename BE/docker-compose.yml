@@ -1,0 +1,24 @@
+services:
+  postgres:
+    # pgvector/pgvector ships the `vector` extension preinstalled on top of
+    # stock Postgres — same image, same setup, one extra `CREATE EXTENSION`
+    # (handled automatically in app/core/db.py:init_db). No separate vector
+    # DB server to run.
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: plantwise
+      POSTGRES_USER: plantwise
+      POSTGRES_PASSWORD: plantwise
+    ports:
+      # Mapped to 5433, not the standard 5432 — a lot of dev machines
+      # already have a native/other Postgres bound to 5432, and a container
+      # losing that port race fails silently (connects, but to the wrong
+      # server) rather than erroring, which is a nasty one to debug. If 5433
+      # is also taken on your machine, remap here and in .env accordingly.
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

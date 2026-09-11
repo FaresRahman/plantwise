@@ -1,0 +1,56 @@
+services:
+  # ---- PostgreSQL + pgvector ----
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: plantwise
+      POSTGRES_USER: plantwise
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-plantwise}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plantwise"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ---- Backend API (FastAPI + Gunicorn) ----
+  backend:
+    build:
+      context: ..
+      dockerfile: BE/Dockerfile
+    restart: unless-stopped
+    environment:
+      ENV: production
+      DATABASE_URL: postgresql+asyncpg://plantwise:${DB_PASSWORD:-plantwise}@postgres:5432/plantwise
+      JWT_SECRET: ${JWT_SECRET}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM: ${SMTP_FROM:-noreply@plantwise.local}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      CORS_ORIGINS: '["${FRONTEND_URL:-http://localhost}"]'
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_storage:/app/BE/storage
+
+  # ---- Frontend (Nginx + React SPA) ----
+  frontend:
+    build:
+      context: ..
+      dockerfile: FE/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${PORT:-80}:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  backend_storage:

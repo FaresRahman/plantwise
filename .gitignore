@@ -1,0 +1,21 @@
+reference-docs/
+test-data/
+sample-data/
+
+# Local tooling / assistant state, never pushed
+.claude/
+.waymore/
+
+# Auto-generated init phase artifacts
+AGENTS.PHASE1.md
+AGENTS.PHASE2.md
+AGENTS.md.tmp
+AGENTS.md.MERGE_FAILED
+
+# Local Connector build artifacts — built via BE/connector/packaging/connector.spec,
+# not source; the packaged .exe copy the backend serves for download is a build
+# output too, regenerate rather than commit.
+BE/connector/dist/
+BE/connector/build/
+BE/connector/pyinstaller_out.log
+BE/app/static/downloads/

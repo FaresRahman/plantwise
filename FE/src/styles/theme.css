@@ -1,0 +1,1090 @@
+/* ==========================================================================
+   Plantwise design tokens.
+
+   Visual identity: a black/white B2B-industrial system (reference: Ferox —
+   dribbble.com/shots/27033421) — near-black chrome and UI defaults, pure
+   white workspace, one bold golden-yellow brand accent used sparingly
+   (logo, active nav, one featured highlight per screen), and a signature
+   "cut corner" tab shape (see `.tab-card`) on primary cards instead of a
+   uniform border-radius. The brand yellow is intentionally NOT reused for
+   the dashboard's "caution" status color (--color-warning-*) — they're
+   built from different hues so a primary action never reads as a warning.
+   All numeric/data display uses a tabular monospace face.
+   ========================================================================== */
+:root {
+  /* Primary — near-black ink. This IS the default interactive/link/focus
+     color now (buttons, links, focus rings) — the reference's dominant
+     chrome color, not a brand hue. */
+  --color-primary-50: #F3F3F2;
+  --color-primary-100: #E7E7E4;
+  --color-primary-200: #CFCFCA;
+  --color-primary-300: #ADADA6;
+  --color-primary-400: #7A7A72;
+  --color-primary-500: #4D4D45;
+  --color-primary-600: #1A1A17;
+  --color-primary-700: #121210;
+  --color-primary-800: #0B0B0A;
+  --color-primary-900: #060605;
+  --color-primary-950: #000000;
+
+  /* Accent — the one signature brand color: a bold golden yellow. Spend it
+     deliberately (logo mark, active nav, a single featured card) — this is
+     NOT a general-purpose "primary button" color. */
+  --color-accent-50: #FFFBEA;
+  --color-accent-100: #FEF3C0;
+  --color-accent-200: #FCE888;
+  --color-accent-300: #FAD34E;
+  --color-accent-400: #F7C82E;
+  --color-accent-500: #F7CB35;
+  --color-accent-600: #F5C518;
+  --color-accent-700: #C99E0E;
+  --color-accent-800: #93720A;
+  --color-accent-900: #5E4806;
+  --color-accent-ink: #14110A;
+
+  /* Solid-fill tokens — for anything painted as a dark filled shape with
+     fixed light text on top (primary buttons, avatar chips). Deliberately
+     NOT derived from --color-primary-*, because that ramp inverts in dark
+     mode (correct for text/links, which must lighten against a dark page)
+     — inverting it here would turn a "dark button, white text" into a
+     "white button, white text" in dark mode. These stay constant across
+     both themes so a filled button always looks the same. */
+  --color-fill-solid: #1A1A17;
+  --color-fill-solid-hover: #000000;
+  --color-fill-solid-fg: #FFFFFF;
+
+  /* Neutral — clean, true (not blue-tinted) grays */
+  --color-neutral-50: #F5F5F4;
+  --color-neutral-100: #EBEBE8;
+  --color-neutral-200: #DEDEDA;
+  --color-neutral-300: #C6C6C1;
+  --color-neutral-400: #9B9B94;
+  --color-neutral-500: #75756D;
+  --color-neutral-600: #54544D;
+  --color-neutral-700: #3A3A34;
+  --color-neutral-800: #242421;
+  --color-neutral-900: #141412;
+  --color-neutral-950: #0A0A09;
+
+  /* Chrome — the near-black bezel (sidebar / floating nav pill / topbar-adjacent surfaces) */
+  --color-chrome-950: #101010;
+  --color-chrome-800: #1A1A1A;
+  --color-chrome-700: #232323;
+  --color-chrome-600: #2E2E2E;
+  --color-chrome-border: rgba(255, 255, 255, 0.08);
+  --color-chrome-text: #B9B9B5;
+  --color-chrome-text-muted: #6B6B67;
+  --color-chrome-text-active: #FFFFFF;
+  --color-chrome-led: var(--color-accent-600);
+
+  /* Success — vivid safety green (normal / fresh / ok) */
+  --color-success-50: #EAFBF2;
+  --color-success-100: #CFF5E0;
+  --color-success-200: #9EE8C0;
+  --color-success-300: #64D39A;
+  --color-success-400: #34B978;
+  --color-success-500: #1FA75E;
+  --color-success-600: #158A4C;
+  --color-success-700: #0F6E3D;
+  --color-success-800: #0F5732;
+  --color-success-900: #0D4629;
+
+  /* Warning — burnt-orange caution (deliberately NOT the brand yellow, so a
+     "warning" state and a "primary/brand" moment never look the same) */
+  --color-warning-50: #FDF2E6;
+  --color-warning-100: #FBE2C4;
+  --color-warning-200: #F6C688;
+  --color-warning-300: #EFA652;
+  --color-warning-400: #EA8F30;
+  --color-warning-500: #E8871E;
+  --color-warning-600: #C76F14;
+  --color-warning-700: #96530E;
+  --color-warning-800: #653809;
+  --color-warning-900: #3D2205;
+
+  /* Error — vivid safety red (critical / high urgency / severely stale) */
+  --color-error-50: #FFF1F0;
+  --color-error-100: #FFDCDA;
+  --color-error-200: #FFB6B0;
+  --color-error-300: #FF8A80;
+  --color-error-400: #F8584C;
+  --color-error-500: #EA3E30;
+  --color-error-600: #D42E22;
+  --color-error-700: #AB2419;
+  --color-error-800: #841C13;
+  --color-error-900: #63160E;
+
+  /* Info — used sparingly (operator role banner, citations) */
+  --color-info-50: #EBF6FF;
+  --color-info-100: #D3ECFE;
+  --color-info-200: #A7D9FD;
+  --color-info-300: #72C0FB;
+  --color-info-400: #3AA3F5;
+  --color-info-500: #1287E8;
+  --color-info-600: #0C6EC4;
+  --color-info-700: #0A579E;
+  --color-info-800: #0C4679;
+  --color-info-900: #0E3A5F;
+
+  /* Semantic */
+  --color-text-primary: var(--color-neutral-950);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-tertiary: var(--color-neutral-400);
+  --color-text-inverse: #FFFFFF;
+  --color-text-disabled: var(--color-neutral-300);
+
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: var(--color-neutral-50);
+  --color-background-tertiary: var(--color-neutral-100);
+
+  --color-surface-default: #FFFFFF;
+  --color-surface-hover: var(--color-neutral-50);
+  --color-surface-active: var(--color-neutral-100);
+  --color-surface-disabled: var(--color-neutral-100);
+
+  --color-border-default: var(--color-neutral-200);
+  --color-border-subtle: var(--color-neutral-100);
+  --color-border-strong: var(--color-neutral-300);
+
+  --color-interactive-default: var(--color-primary-600);
+  --color-interactive-hover: var(--color-primary-700);
+  --color-interactive-active: var(--color-primary-800);
+  --color-interactive-disabled: var(--color-neutral-300);
+
+  --color-focus-ring: var(--color-accent-600);
+
+  /* "You are here" for the small step-number circle (CSV/DB import
+     wizards) — kept separate from the accent/gold ramp on purpose. Those
+     wizards already show gold field-name chips and a gold Manual Entry/File
+     Upload/Database Import selector right next to this, so a third gold
+     element in the same view reads as visual noise rather than a signal.
+     Paired -fg text color travels with it since dark mode's background is a
+     light neutral (not a dark one), unlike most of this theme. */
+  --color-step-current: var(--color-primary-600);
+  --color-step-current-fg: #FFFFFF;
+
+  /* Typography — three roles: display (engineered geometry), body (workhorse
+     legibility), mono (instrument-readout numerals, tabular figures). */
+  --font-family-display: "Manrope", "Segoe UI", sans-serif;
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-family-mono: "IBM Plex Mono", "SF Mono", Monaco, Consolas, "Roboto Mono", monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+
+  /* Spacing (4px base unit) */
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+
+  /* Radius — moderate throughout; nothing pill-bubbly, nothing zero. */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(10, 10, 9, 0.05);
+  --shadow-sm: 0 1px 2px 0 rgba(10, 10, 9, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(10, 10, 9, 0.1), 0 2px 4px -1px rgba(10, 10, 9, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(10, 10, 9, 0.1), 0 4px 6px -2px rgba(10, 10, 9, 0.05);
+  --shadow-card: 0 1px 2px rgba(10, 10, 9, 0.05), 0 6px 16px -8px rgba(10, 10, 9, 0.16);
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Back-compat aliases: pages not yet ported to the exact token names
+     still reference these short names; keep them mapped to the nearest
+     equivalent above so nothing silently unstyles. --- */
+  --color-primary: var(--color-primary-600);
+  --color-primary-dark: var(--color-primary-700);
+  --color-bg: var(--color-neutral-100);
+  --color-surface: var(--color-background-primary);
+  --color-border: var(--color-border-default);
+  --color-text: var(--color-text-primary);
+  --color-text-muted: var(--color-text-secondary);
+  --color-ok: var(--color-success-600);
+  --color-critical: var(--color-error-600);
+  --radius: var(--radius-lg);
+  --shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Dark theme — same tokens, re-derived rather than naively inverted: each
+   ramp's stops swap direction (the pale "-50/-100" tint becomes a dark,
+   desaturated background tone; the "-600/-700" stop used for icons/text
+   becomes a brighter, legible-on-dark tone) so every existing var(--color-*)
+   reference — badges, stamps, callouts, tables — keeps working unchanged.
+   The chrome sidebar/topbar accent stays as-is in both themes; only the
+   workspace flips. Toggled via [data-theme="dark"] on <html> (see AppShell).
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --color-primary-50: #1C1C19;
+  --color-primary-100: #262622;
+  --color-primary-200: #3A3A34;
+  --color-primary-300: #55554C;
+  --color-primary-400: #86867C;
+  --color-primary-500: #B4B4A9;
+  --color-primary-600: #E8E8E3;
+  --color-primary-700: #F0F0EC;
+  --color-primary-800: #F7F7F5;
+  --color-primary-900: #FBFBFA;
+  --color-primary-950: #FFFFFF;
+
+  --color-accent-50: #2A2308;
+  --color-accent-100: #362B08;
+  --color-accent-200: #4A3A0A;
+  --color-accent-300: #6B530A;
+  --color-accent-400: #9C7A0C;
+  --color-accent-500: #D6A912;
+  --color-accent-600: #F5C518;
+  --color-accent-700: #F9D65E;
+  --color-accent-800: #FCE8A0;
+  --color-accent-900: #FEF6D4;
+  --color-accent-ink: #14110A;
+
+  --color-neutral-50: #1C1C1A;
+  --color-neutral-100: #242422;
+  --color-neutral-200: #302F2C;
+  --color-neutral-300: #444440;
+  --color-neutral-400: #767670;
+  --color-neutral-500: #96968E;
+  --color-neutral-600: #ABABA3;
+  --color-neutral-700: #C4C4BC;
+  --color-neutral-800: #DEDEDA;
+  --color-neutral-900: #F0F0EE;
+  --color-neutral-950: #FAFAF9;
+
+  --color-success-50: #0F2A1E;
+  --color-success-100: #133923;
+  --color-success-200: #1B5433;
+  --color-success-300: #2C7D4C;
+  --color-success-400: #34B978;
+  --color-success-500: #4FC98B;
+  --color-success-600: #6FD6A0;
+  --color-success-700: #A0E6C2;
+  --color-success-800: #CDF3DE;
+  --color-success-900: #E9FAF0;
+
+  --color-warning-50: #2E2210;
+  --color-warning-100: #3D2D13;
+  --color-warning-200: #59421A;
+  --color-warning-300: #8A6624;
+  --color-warning-400: #C68A19;
+  --color-warning-500: #E29D12;
+  --color-warning-600: #F0AE2E;
+  --color-warning-700: #F6C978;
+  --color-warning-800: #FAE0B2;
+  --color-warning-900: #FDF1DC;
+
+  --color-error-50: #331512;
+  --color-error-100: #451B16;
+  --color-error-200: #692720;
+  --color-error-300: #9B382C;
+  --color-error-400: #D24C3E;
+  --color-error-500: #E56455;
+  --color-error-600: #EC8476;
+  --color-error-700: #F3AA9F;
+  --color-error-800: #F9CFC8;
+  --color-error-900: #FCE9E6;
+
+  --color-info-50: #10202F;
+  --color-info-100: #162B41;
+  --color-info-200: #1F4562;
+  --color-info-300: #2C6690;
+  --color-info-400: #3AA3F5;
+  --color-info-500: #5AB4F5;
+  --color-info-600: #6FC0F2;
+  --color-info-700: #A0D6F6;
+  --color-info-800: #C9E8FA;
+  --color-info-900: #E6F5FD;
+
+  --color-step-current: var(--color-neutral-600);
+  --color-step-current-fg: #14110A;
+
+  --color-text-inverse: #0A0A09;
+  --color-background-primary: #0A0A09;
+  --color-surface-default: #1A1A1A;
+  --color-surface-hover: var(--color-neutral-50);
+  --color-surface-active: var(--color-neutral-100);
+  --color-surface-disabled: var(--color-neutral-50);
+
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 10px -2px rgba(0, 0, 0, 0.45), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 20px -4px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 20px -8px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a {
+  color: var(--color-interactive-default);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-interactive-hover);
+}
+
+button {
+  font-family: inherit;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Every metric, reading, ID, and timestamp in the product renders through
+   this class — the "instrument readout" signature. Tabular figures so
+   columns of numbers line up like a digital gauge. */
+.num {
+  font-family: var(--font-family-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Small inline chip for raw field/column names (CSV schema hints, etc.) —
+   reads as code, not run-on prose. Filled with the same gray used for
+   standard input/select borders (--color-neutral-200) instead of a border
+   of its own, so it reads as a distinct code token without a heavier dark
+   fill or an outline. */
+.field-chip {
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  background: var(--color-neutral-200);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+  padding: 1px 8px;
+  margin: 1px 2px;
+  white-space: nowrap;
+}
+
+/* Every text button in the app (primary/secondary/danger/ghost) shares one
+   fixed height and a minimum width, so a row of buttons of different labels
+   ("Copy" next to "Test Connection") lines up instead of each hugging its
+   own label size. Width still grows past the minimum for longer labels —
+   only a handful of deliberately wider inputs (e.g. "Reason for hold") are
+   sized on their own. */
+/* Row-level action inside a table cell (e.g. Deactivate/Reactivate sitting
+   next to a Badge or a compact Select in the same row) — the standard 38px/
+   92px sizing above is right for a standalone action but reads oversized
+   packed into a data row alongside a 32px status chip. Same family of
+   button, just the compact size that matches Select's own `compact` height
+   and Badge's height, so a table row's chips all line up. */
+.btn-compact {
+  height: 32px !important;
+  min-width: 0 !important;
+  padding: 0 12px !important;
+  font-size: 12px !important;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-ghost {
+  height: 42px;
+  min-width: 92px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  border: none;
+  background: var(--color-fill-solid);
+  color: var(--color-fill-solid-fg);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+.btn-primary:hover {
+  background: var(--color-fill-solid-hover);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+.btn-primary:disabled {
+  background: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.btn-secondary:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+}
+.btn-secondary:disabled {
+  color: var(--color-neutral-400);
+  cursor: not-allowed;
+  background: var(--color-neutral-50);
+}
+
+.surface {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+/* The signature card shape: one corner cut into a diagonal "tab," like a
+   folded tag, instead of a uniform border-radius.
+   Three earlier techniques for the edge/border all failed the same way — a
+   plain `border` can't trace a diagonal clip edge; a box-shadow "ring"
+   wasn't reliably visible; `filter: drop-shadow()` looked right (it does
+   correctly trace a clipped shape) but CSS filter functions in one `filter`
+   property chain sequentially — each applies to the *already-filtered*
+   output of the previous one, not independently to the plain original
+   element, so four stacked directional drop-shadows didn't reliably
+   produce a symmetric 4-sided outline.
+   This is the final, much more basic technique: two plain background-color
+   layers, both clipped with the same polygon, the outer one slightly
+   larger. The outer layer (this class) is the "edge" color; `::before`
+   sits 1.5px inset with the card's real fill on top of it. Plain
+   background-color + clip-path is the single most basic use of clip-path
+   there is — nothing here can fail the way a shadow/filter/border can.
+   Per-card custom properties (set via inline style):
+     --tab-card-bg      the card's actual fill color (falls back to white)
+     --tab-card-border  the edge color (falls back to a dark neutral).
+       Only cards whose fill is close in tone to whatever they sit on need
+       this edge to read as a container at all (e.g. a white card on a
+       white page) — a card that already contrasts well against its
+       surroundings (a colored card on white, a dark card on white, a white
+       card on a dark section) doesn't need it and should set this to
+       "transparent" so it isn't over-outlined. */
+.tab-card {
+  position: relative;
+  isolation: isolate;
+  clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: var(--shadow-card);
+  background: var(--tab-card-border, var(--color-neutral-600)) !important;
+}
+.tab-card::before {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  z-index: -1;
+  clip-path: polygon(16.5px 0, 100% 0, 100% 100%, 0 100%, 0 16.5px);
+  background: var(--tab-card-bg, var(--color-surface-default));
+}
+
+.input {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: 0 12px;
+  height: 42px;
+  font-size: 14px;
+  width: 100%;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-surface-default);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent-600);
+  box-shadow: 0 0 0 3px var(--color-accent-100);
+}
+.input::placeholder {
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+}
+/* Same look as a normal, enabled field — disabled here means "not
+   interactable," not "muted/unavailable," so it must not read as a
+   different, lesser field. Browsers dim disabled controls by default
+   (Safari/WebKit especially, via -webkit-text-fill-color), so every visual
+   property is pinned back to .input's own values; only the cursor changes. */
+.input:disabled {
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  opacity: 1;
+  -webkit-text-fill-color: var(--color-text-primary);
+  cursor: not-allowed;
+}
+/* Extra breathing room before a native <select>'s own dropdown arrow —
+   plain `<select className="input">` (no custom chevron) reserves this so
+   long option text never runs flush against the arrow. */
+select.input {
+  padding-right: 34px;
+  cursor: pointer;
+}
+
+/* Wraps a native <select> so we can draw our own dropdown arrow in place of
+   the browser's — the native glyph doesn't match `.input`'s font/inset and
+   sits flush against the edge. The <select> itself stays fully native
+   (keyboard/a11y/behavior untouched); we just hide its default arrow and
+   render a positioned icon on top. */
+.pw-select {
+  position: relative;
+  width: 100%;
+  /* In a CSS grid row, a plain block child stretches to the row's height by
+     default — if a sibling cell is taller (e.g. a field with an extra hint
+     line under it), this wrapper grows past the fixed-height <select> inside
+     it, and the chevron (centered on the *wrapper*) drifts down toward the
+     stretched cell's bottom edge instead of the visible field's center.
+     Opting out of stretch keeps this wrapper (and its chevron) sized to the
+     select itself, in any layout. */
+  align-self: start;
+}
+.pw-select__native {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 36px;
+  font-family: var(--font-family-sans);
+  cursor: pointer;
+}
+.pw-select__chevron {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.pw-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.pw-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: 9999px;
+}
+.chrome-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.chrome-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   Shared table + row-action styles — used by every module's config list
+   (asset registry, lines, items, characteristics, users, audit log) so they
+   all share one visual language instead of each page rolling its own.
+   ========================================================================== */
+.table-card {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.table-head {
+  padding: 12px 16px;
+  background: var(--color-neutral-50);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.table-row {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 13px;
+  align-items: center;
+  transition: background var(--transition-fast);
+}
+.table-row:last-child {
+  border-bottom: none;
+}
+.table-row--clickable {
+  cursor: pointer;
+}
+.table-row--clickable:hover {
+  background: var(--color-surface-hover);
+}
+.table-cell-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.table-cell-wrap {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
+}
+.table-cell-num {
+  font-family: var(--font-family-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Real semantic <table> variant (src/components/Table.tsx) — the "spec
+   sheet" look: hairline rows, mono tabular numeric columns. */
+.sheet {
+  background: var(--color-surface-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.sheet-scroll {
+  overflow-x: auto;
+}
+.sheet table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.sheet thead th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--color-border-default);
+  font-weight: 700;
+  background: var(--color-neutral-50);
+  white-space: nowrap;
+}
+.sheet tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: middle;
+}
+.sheet tbody tr:last-child td {
+  border-bottom: none;
+}
+.sheet tbody tr[data-clickable="true"] {
+  cursor: pointer;
+}
+.sheet tbody tr[data-clickable="true"]:hover {
+  background: var(--color-surface-hover);
+}
+/* Selected/active row — used where a table row drives another part of the
+   page (e.g. Quality's Characteristics table picks the headline card).
+   A tint + left accent bar reads as "selected" at a glance, unlike a
+   near-invisible dot. */
+.sheet tbody tr[data-active="true"] {
+  background: var(--color-primary-50);
+  box-shadow: inset 3px 0 0 var(--color-primary-600);
+}
+.sheet tbody tr[data-clickable="true"][data-active="true"]:hover {
+  background: var(--color-primary-50);
+}
+.sheet th.num,
+.sheet td.num {
+  text-align: right;
+  font-family: var(--font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Icon-style Edit/Delete row actions — same look everywhere in the app. */
+.row-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-default);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  flex: none;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.btn-icon:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-border-strong);
+}
+.btn-icon--edit {
+  color: var(--color-step-current);
+}
+.btn-icon--edit:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+  background: var(--color-neutral-50);
+}
+.btn-icon--delete {
+  color: var(--color-error-600);
+}
+.btn-icon--delete:hover {
+  color: var(--color-error-700);
+  border-color: var(--color-error-200);
+  background: var(--color-error-50);
+}
+
+/* Bare chevron toggle (e.g. FormSection's collapsible header) — no border/
+   fill at rest, unlike .btn-icon, since it sits inline in a header rather
+   than needing to read as a distinct control until interacted with. */
+.btn-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  flex: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.btn-chevron:hover {
+  background: var(--color-neutral-100);
+  color: var(--color-text-primary);
+}
+
+/* Segmented-choice toggle (Manual Entry / File Upload / Database Import,
+   File / URL, etc.) — marks which option is currently selected, which is a
+   different thing from a primary call-to-action, so it gets the brand's
+   golden "active" treatment instead of borrowing .btn-primary's solid-black
+   fill. That fill is intentionally constant across themes (see
+   --color-fill-solid above), so reused as a "selected" indicator it reads
+   as just another black button sitting on an already-dark card in dark
+   mode — no clearer than the unselected ones. */
+.seg-btn {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+}
+.seg-btn:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-400);
+}
+/* Same gold pill formula as the onboarding wizard's "current step" chips
+   (OnboardingPage.tsx) — soft tint fill, not a solid/saturated one, so it
+   reads as "selected" rather than as another primary-action button. */
+.seg-btn--active {
+  border-color: var(--color-accent-400);
+  background: var(--color-accent-100);
+  color: var(--color-accent-900);
+}
+.seg-btn--active:hover {
+  background: var(--color-accent-200);
+}
+
+/* A strict two-way exclusive choice (Cloud/Live Database vs. Local
+   Database) rendered as ONE bordered container split into segments,
+   instead of two independent .seg-btn pills sitting side by side — reads
+   as a single control with two states, not two competing buttons. */
+.seg-toggle {
+  display: inline-flex;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.seg-toggle__option {
+  border: none;
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.seg-toggle__option + .seg-toggle__option {
+  border-left: 1px solid var(--color-border-strong);
+}
+.seg-toggle__option:hover {
+  background: var(--color-neutral-50);
+}
+.seg-toggle__option--active {
+  background: var(--color-accent-100);
+  color: var(--color-accent-900);
+}
+.seg-toggle__option--active:hover {
+  background: var(--color-accent-200);
+}
+
+.btn-danger {
+  border: 1px solid var(--color-error-200);
+  background: var(--color-error-50);
+  color: var(--color-error-700);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}
+.btn-danger:hover {
+  background: var(--color-error-100);
+}
+
+/* Same soft-outline formula as .btn-danger (border + tinted fill + colored
+   text, not a solid button) but in the accent palette, for a standout
+   action — Ask the AI — that isn't destructive and so shouldn't read as
+   one via a red outline. */
+.btn-outline-accent {
+  height: 42px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--color-accent-300);
+  background: var(--color-accent-50);
+  color: var(--color-accent-800);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.btn-outline-accent:hover {
+  background: var(--color-accent-100);
+}
+
+.btn-ghost {
+  border: 1px solid transparent;
+  background: none;
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  background: var(--color-neutral-100);
+}
+
+/* ==========================================================================
+   Responsive breakpoints — the app is desktop-first but degrades gracefully
+   on tablets and phones. Sidebar collapses, grids go single-column, cards
+   and tables become scrollable. Built-in (no external library).
+   ========================================================================== */
+
+/* ---- Tablet (≤ 1024px) ---- */
+@media (max-width: 1024px) {
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  [style*="max-width: 1080"],
+  [style*="maxWidth: 1080"],
+  [style*="maxWidth:1080"] {
+    max-width: 100% !important;
+  }
+  .chrome-sidebar {
+    width: 76px !important;
+  }
+  .chrome-sidebar .chrome-label,
+  .chrome-sidebar .chrome-wordmark,
+  .chrome-sidebar .chrome-sub,
+  .chrome-sidebar .nav-item-label,
+  .chrome-sidebar .nav-lock-tag,
+  .chrome-sidebar .nav-group-label {
+    display: none !important;
+  }
+  .chrome-sidebar .nav-item {
+    justify-content: center;
+  }
+  .chrome-sidebar .brand {
+    justify-content: center;
+  }
+}
+
+/* ---- Mobile (≤ 768px) ---- */
+@media (max-width: 768px) {
+  /* Single-column grids */
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 5-col strip → scrollable row */
+  [style*="gridTemplateColumns: repeat(5"] {
+    grid-template-columns: repeat(5, minmax(120px, 1fr)) !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Full-width cards */
+  [style*="gridTemplateColumns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tables become scrollable cards */
+  .table-card,
+  .sheet-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Stack page header */
+  [style*="display: flex"][style*="justifyContent: space-between"] {
+    flex-direction: column !important;
+    gap: 12px;
+  }
+
+  /* Modal full-width on mobile */
+  [style*="position: fixed"][style*="background: rgba"] > div {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Larger touch targets */
+  button, .btn-primary, .btn-secondary, .btn-danger, .btn-ghost {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ---- Small phone (≤ 480px) ---- */
+@media (max-width: 480px) {
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  [style*="padding: 32"] {
+    padding: 16px !important;
+  }
+
+  [style*="padding: 24"] {
+    padding: 12px !important;
+  }
+
+  .chrome-sidebar {
+    width: 56px !important;
+  }
+}
+
+/* ==========================================================================
+   Hover affordances — every clickable surface in the app should visibly
+   react to a pointer, since this is a mouse/trackpad-driven web app, not a
+   touch-only one.
+   ========================================================================== */
+.nav-item {
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-ghost,
+.btn-icon {
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pw-plate {
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+    cursor: pointer;
+  }
+  .pw-plate:hover {
+    box-shadow: 0 0 0 3px var(--color-accent-100), var(--shadow-card);
+    border-color: var(--color-accent-400);
+  }
+  /* tab-card's edge is the outer background layer (see .tab-card above), not
+     a border/shadow/filter — so its hover state is just a background-color
+     swap on that same outer layer, which is completely reliable. */
+  .tab-card.pw-plate {
+    transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .tab-card.pw-plate:hover {
+    background: var(--color-accent-500) !important;
+    box-shadow: 0 4px 10px -2px rgba(10, 10, 9, 0.25);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}

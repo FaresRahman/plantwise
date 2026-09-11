@@ -1,0 +1,7 @@
+# Test-only dependencies — not installed in the production image (Dockerfile
+# builds from requirements.txt alone). Install with:
+#   pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+
+pytest==9.1.1
+pytest-asyncio==1.4.0

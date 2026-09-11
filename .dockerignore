@@ -1,0 +1,12 @@
+**/.env
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/node_modules/
+BE/connector/
+BE/storage/
+.git/
+.claude/
+.waymore/

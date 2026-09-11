@@ -1,0 +1,26 @@
+# Local Connector — kept deliberately small; this is what gets bundled into
+# the packaged executable, so unlike BE/requirements.txt it has none of the
+# app's unrelated dependencies (no langchain/openai/fastembed/alembic/etc).
+
+httpx==0.28.1
+fastapi==0.139.0
+uvicorn[standard]==0.51.0
+python-multipart==0.0.32
+pydantic==2.13.4
+pydantic-settings==2.14.2
+cryptography==49.0.0
+
+# Tier-1 database drivers (see db_adapters/ — same set BE/requirements.txt pins).
+asyncpg==0.31.0
+aiomysql==0.3.2
+python-tds==1.17.1
+oracledb==4.0.1
+hdbcli==2.29.25
+
+# Tier-2 drivers — optional, needs a native client library the connector
+# can't bundle automatically. Uncomment and install only if this connector
+# needs to reach a Db2/Informix or Firebird database:
+# ibm_db
+# firebird-driver
+
+pyinstaller==6.21.0
