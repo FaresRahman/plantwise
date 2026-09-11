@@ -1,9 +1,32 @@
 # Plantwise
 
-Factory operations dashboard — production, quality, inventory, shift
-reports, and equipment maintenance for a plant, in one place. Data comes in
-either from manual entry, CSV/Excel uploads, or a direct connection to the
-plant's own database through a small local connector app.
+Plantwise is an operations platform for discrete manufacturing plants. It's
+not just a place to log data — it watches that data and tells you what's
+about to go wrong, before it does:
+
+- **Predictive maintenance** — tracks sensor readings against thresholds
+  and trends, catches values drifting toward a failure point (not just
+  values that already crossed it), and matches the pattern against past
+  failures on the same asset. Every recommendation comes with a plain-English
+  evidence trail (readings, dates, % change) — no black-box score.
+- **Quality drift detection** — watches defect rates for sudden spikes and
+  measured values drifting toward a tolerance limit, and correlates a
+  quality spike with production downtime/changeover events around the same
+  time, to suggest a likely cause.
+- **Inventory forecasting** — projects run-out dates from consumption rate
+  and flags low stock before it's a problem.
+- **SOP assistant** — an AI chatbot that answers plant questions grounded in
+  your own uploaded SOPs/documents and live module data, with sources cited
+  every time, across every module (not a separate bot bolted on the side).
+- **Auto-generated shift reports** — handover notes built from the shift's
+  actual activity, with explicit next-shift actions, instead of scribbled
+  notes.
+- **Data freshness tracking** — every figure on the dashboard shows when it
+  last arrived; stale data is flagged, never quietly passed off as live.
+
+Data gets in three ways: manual entry, CSV/Excel upload, or a direct,
+scheduled sync from the plant's own database via a local connector app that
+never exposes that database to the internet.
 
 ## Contents
 
