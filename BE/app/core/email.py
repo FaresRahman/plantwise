@@ -43,5 +43,5 @@ def send_email(to: list[str], subject: str, html_body: str) -> None:
     except Exception as exc:
         # Never let a transient email error crash the request that triggered
         # it (e.g. signup, invite).  Log and move on.
-        import logging
-        logging.getLogger(__name__).warning("email_send_failed", to=to, subject=subject, error=str(exc))
+        import structlog
+        structlog.get_logger(__name__).warning("email_send_failed", to=to, subject=subject, error=str(exc))
